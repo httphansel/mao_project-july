@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root{
+    --bebas: "Bebas Neue", sans-serif;
+    --arimo: "Arimo", sans-serif;
+    --kanit: "Kanit", sans-serif;
+    --white: #F5F1ED;
+    --black: #252323;
+    --bone: #DAD2BC;
+    --success: #198754;
+    --success-subtle: #20c997;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-size: .875rem;
+    background-color: var(--bone);
+}
+
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    padding: 20px;
+    height: 100%;
+    background-color: var(--bone);
+}
+
+.nav-link{
+    color: var(--white);
+    font-weight: 200;
+    font-family: var(--kanit);
+    font-size: 14px;
+}
+.nav-link.active {
+    font-weight: bold;
+    color: var(--black);
+    background-color: var(--success-subtle);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+.nav-link:hover {
+    color: var(--black);
+    background-color: var(--success-subtle);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+h2{
+    font-family: var(--arimo);
+    font-weight: 700;
+}
+
+h1 .h3{
+    font-family: var(--bebas);
+}
+
+.linkBtn {
+    font-family: var(--bebas);
+}
+
+#pageBtn:hover{
+    font-size: 15px;
+    color: var(--success);
+}
+
+.inventoryBtn{
+    text-decoration: none;
+    font-size: 25px;
+    font-family: var(--bebas);
+    color: var(--black);
+    }
+.inventoryBtn p:hover{
+    text-decoration: none;
+    font-size: 18px;
+    font-family: var(--bebas);
+    color: var(--black);
+    }
+.shadowBtn:hover{
+    background-color: var(--white);
+    color: var(--black);
+    cursor: grab;
+}
+.shadowBtn:active{
+    background-color: var(--success-subtle);
+}

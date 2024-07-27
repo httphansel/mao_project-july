@@ -1,0 +1,590 @@
+@media (min-width: 480px) and (max-width: 768px) {
+    /* Styles for small screens (smartphones) */
+    body{
+        width: 100%;
+        height: 100vh;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        background-color: rgb(109, 230, 149);
+    }
+    .div1{
+        width: 90%;
+        height: 80vh;
+        border: none;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        color: #333333;
+        background-color: #dddddd;
+        box-shadow: -10px -10px 0px -20px rgba(255, 255, 255, 0.5), 5px 5px 5px 5px rgba(44, 107, 44, 0.5);
+    }
+
+    form{
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+        height: 80vh;
+        border-radius: 20px;
+    }
+    form .top{
+        width: 100%;
+        height: 12vh;
+    }
+    form b{
+        font-size: 30px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        width: 100%;
+        height: 10vh;
+        float: left;
+        margin-bottom: 5%;
+    }
+    input[type="email"]{
+        width: 80%;
+        height: 7vh;
+        border: 1px solid black;
+        border-radius: 10px;
+        border-bottom: 1px solid black;
+        font-size: 18px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        background: none;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        text-indent: 5%;
+    }
+    input[type="email"]:focus{
+        outline: none;
+        transition-duration: 0.3s;
+        border: 1px solid rgb(0, 116, 0);
+    }
+    input[type="password"]{
+        width: 80%;
+        height: 7vh;
+        border: 1px solid black;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        border-bottom: 1px solid black;
+        font-size: 18px;
+        background: none;
+        margin-bottom: 5%;
+        text-indent: 5%;
+    }
+    input[type="password"]:focus{
+        outline: none;
+        transition-duration: 0.3s;
+        border: 1px solid rgb(0, 116, 0);
+    }
+    input[type="text"]{
+        width: 80%;
+        height: 7vh;
+        border: 1px solid black;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        border-bottom: 1px solid black;
+        font-size: 18px;
+        background: none;
+        margin-bottom: 5%;
+        text-indent: 5%;
+    }
+    input[type="text"]:focus{
+        outline: none;
+        transition-duration: 0.3s;
+        border: 1px solid rgb(0, 116, 0);
+    }
+    input[type="checkbox"]{
+        margin-left: 10%;
+    }
+    .email-label{
+        width: 4.5%;
+        height: 6vh;
+        font-size: 20px;
+        position: absolute;
+        transform: translate(255%, -165%);
+        text-align: center;
+        background: none;
+    }
+    .password-label{
+        width: 7%;
+        height: 6vh;
+        font-size: 20px;
+        position: absolute;
+        transform: translate(165%, -120%);
+        text-align: center;
+        background: none ;
+    }
+    .email-label.focused {
+        transform: translate(120%, -390%);
+        width: 10%;
+        transition: all 0.4s ease;
+        font-size: 15px;
+        height: 3.5vh;
+        background-color: #dddddd;
+        color: rgb(0, 160, 0);
+    }
+    .password-label.focused {
+        transform: translate(82%, -315%);
+        width: 15%;
+        transition: all 0.4s ease;
+        font-size: 15px;
+        height: 3.5vh;
+        background-color: #dddddd;
+        color: rgb(0, 160, 0);
+    }
+    img[id="back"]{
+        float: left;
+        width: 15%;
+        height: 6vh;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        margin-top: 5%;
+    }
+    a[id="back"]{
+        font-size: 18px;
+        justify-content: start;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        text-decoration: none;
+        color: darkgreen;
+        height: 6vh;
+        width: 30%;
+        float: left;  
+        padding-left: 10px;
+        margin-top: 5%;
+    }
+    a[id="back"]:hover{
+        color:rgb(1, 134, 1);
+        text-decoration: underline;
+    }
+    img[id="logo"]{
+        width: 27%;
+        height: 12vh;
+        border: 1px solid black;
+        float: right;
+        border-radius: 100%;
+    }
+    a[id="forgot"]{
+        font-size: 15px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        margin-top: 3%;
+    }
+    a[id="forgot"]:hover{
+        font-size: 15px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        margin-top: 3%;
+        color:rgb(128, 128, 255);
+    }
+    button{
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        border-radius: 20px;
+        width: 70%;
+        height: 6vh;
+        font-size: 20px;
+        color: white;
+        background-color: darkgreen;
+        border: 1px solid white;
+    }
+    button:hover{
+        background: linear-gradient(to right, lightgreen, darkgreen);
+    }
+    p{
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+    }
+    p a[name="signup"]{
+        margin-left: 2%;
+        font-style: italic;
+        color: blue;
+    }
+    p a[name="signup"]:hover{
+        margin-left: 2%;
+        font-style: italic;
+        color:rgb(128, 128, 255);
+    }
+    .message{
+        width: 80%;
+        height: 12vh;
+        font-size: 20px;
+        color: rgb(0, 58, 8);
+        border: 2px solid rgb(255, 255, 255);
+        background-color: rgb(101, 180, 121);
+        border-radius: 10px;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        font-weight: 400;
+        top: 10%;
+        animation-name: slideIn;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-delay: 0s;
+        text-align: center;
+        padding-top: 30px;
+    }
+
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    }
+}
+
+
+
+
+@media (min-width: 1025px) {
+    /* Styles for large screens (laptops and desktops) */
+    body{
+        width: 100%;
+        height: 100vh;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        background-color: rgb(255, 255, 255);
+    }
+    .div1{
+        width: 60%;
+        height: 80vh;
+        border: none;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        color: #333333;
+        background-color: #dddddd;
+        box-shadow: -10px -10px 0px -20px rgba(255, 255, 255, 0.5), 5px 5px 5px 5px rgba(44, 107, 44, 0.5);
+    }
+    .left{
+        width: 50%;
+        height: 80vh;
+        float: left;
+        border-radius: 20px;
+        background-color: rgb(1, 77, 30);   
+    }
+    .left .line1{
+        float: left;
+        width: 100%;
+        height: 15vh;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding-left: 10px;
+    }
+    .left .line1 a[id="icon"]{
+        width: 10%;
+        height: 5vh;        
+        float: left;
+    }
+    .left .line1 a img{
+        width: 100%;
+        height: 5vh;        
+        float: left;
+    }
+    .left .line1 a[id="back"]{
+        color: rgb(36, 176, 4);
+        text-decoration: none;
+        text-align: center;
+        font-size: 18px;
+        float: left;
+        width: 12%;
+        height: 5vh;
+    }
+    .left .line1 a[id="back"]:hover{
+        text-decoration: underline;
+        color: rgb(21, 112, 1);
+    }
+    .left .line2{
+        float: left;
+        width: 100%;
+        height: 65vh;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .left .line2 .logo{
+        width: 70%;
+        height: 35vh;
+        display: flex;
+        align-items: center;
+        margin-left: 15%;
+    }
+    .left .line2 .logo img{
+        width: 100%;
+        height: 37vh;
+        border-radius: 100%;
+    }
+    .left .line2 p{
+        color: white;
+        font-size: 20px;
+        font-weight: 300;
+        font-style: italic;
+        text-align: center;
+        margin-top: 10%;
+        text-indent: 5%;
+    }
+    form{
+        padding-top: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 50%;
+        height: 80vh;
+        border-radius: 20px;
+        float: left;
+    }
+    form b{
+        width: 100%;
+        height: 10vh;
+        font-size: 30px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+    }
+    input[type="email"]{
+        width: 80%;
+        height: 7vh;
+        border: 1px solid black;
+        border-radius: 10px;
+        border-bottom: 1px solid black;
+        font-size: 14px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        background: none;
+        margin-top: 5%;
+        margin-bottom: 10%;
+        text-indent: 5%;
+    }
+    input[type="email"]:focus{
+        outline: none;
+        transition-duration: 0.3s;
+        border: 1px solid rgb(0, 116, 0);
+    }
+    input[type="password"]{
+        width: 80%;
+        height: 7vh;
+        border: 1px solid black;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        border-bottom: 1px solid black;
+        font-size: 14px;
+        background: none;
+        margin-bottom: 5%;
+        text-indent: 5%;
+    }
+    input[type="password"]:focus{
+        outline: none;
+        transition-duration: 0.3s;
+        border: 1px solid rgb(0, 116, 0);
+    }
+    input[type="text"]{
+        width: 80%;
+        height: 7vh;
+        border: 1px solid black;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        border-bottom: 1px solid black;
+        font-size: 14px;
+        background: none;
+        margin-bottom: 5%;
+        text-indent: 5%;
+    }
+    input[type="text"]:focus{
+        outline: none;
+        transition-duration: 0.3s;
+        border: 1px solid rgb(0, 116, 0);
+    }
+    input[type="checkbox"]{
+        margin-left: 10%;
+    }
+    .email-label{
+        width: 4.5%;
+        height: 6vh;
+        font-size: 20px;
+        position: absolute;
+        transform: translate(75%, -185%);
+        text-align: center;
+        background: none;
+    }
+    .password-label{
+        width: 7%;
+        height: 6vh;
+        font-size: 20px;
+        position: absolute;
+        transform: translate(50%, -140%);
+        text-align: center;
+        background: none ;
+    }
+    .email-label.focused {
+        transform: translate(110%, -360%);
+        width: 3.5%;
+        transition: all 0.4s ease;
+        font-size: 15px;
+        height: 4vh;
+        background-color: #dddddd;
+        color: rgb(0, 160, 0);
+    }
+    .password-label.focused {
+        transform: translate(72%, -295%);
+        width: 5.5%;
+        transition: all 0.4s ease;
+        font-size: 15px;
+        height: 4vh;
+        background-color: #dddddd;
+        color: rgb(0, 160, 0);
+    }
+    a[id="forgot"]{
+        font-size: 15px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        margin-top: 3%;
+    }
+    a[id="forgot"]:hover{
+        font-size: 15px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        margin-top: 3%;
+        color:rgb(128, 128, 255);
+    }
+    button{
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+        border-radius: 20px;
+        width: 70%;
+        height: 6vh;
+        font-size: 20px;
+        color: white;
+        background-color: rgb(1, 77, 30);
+        border: 1px solid white;
+    }
+    button:hover{
+        background: linear-gradient(to right, lightgreen, darkgreen);
+    }
+    p{
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        display: flex;
+    }
+    p a[name="signup"]{
+        margin-left: 2%;
+        font-style: italic;
+        color: blue;
+    }
+    p a[name="signup"]:hover{
+        margin-left: 2%;
+        font-style: italic;
+        color:rgb(128, 128, 255);
+    }
+    .message{
+        width: 50%;
+        height: 12vh;
+        font-size: 18px;
+        color: rgb(0, 58, 8);
+        border: 2px solid rgb(255, 255, 255);
+        background-color: rgb(101, 180, 121);
+        border-radius: 10px;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        font-weight: 400;
+        top: 10%;
+        animation-name: slideIn;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-delay: 0s;
+        text-align: center;
+        padding-top: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    }
+}
