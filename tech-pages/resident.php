@@ -5,7 +5,6 @@
         <i class="fa-solid fa-address-card"></i> Register a Resident
     </button>
 </div>
-
 <!-- add resident data modal -->
 <div class="modal fade" id="addResidentData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

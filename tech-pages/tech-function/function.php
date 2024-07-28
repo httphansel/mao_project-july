@@ -216,4 +216,70 @@ if(isset($_POST['registerResidentBtn'])){
     }
 }
 
+//add livestock
+if(isset($_POST['addLivestockBtn'])){
+    date_default_timezone_set('Asia/Manila');
+    $ddate = new DateTime();
+    $new_ddate = $ddate->format('Y-m-d');
+    $dday = $ddate->format('l');
+    $ttime = $ddate->format('h:i a');
+    $technician = $_SESSION['user_name'];
+    $tech_id = $_SESSION['tech_id'];
+
+    $farmer_code = mysqli_real_escape_string($conn, $_POST['farmer_code']);
+    $livestock_category = mysqli_real_escape_string($conn, $_POST['livestock_category']);
+    $livestock_type = mysqli_real_escape_string($conn, $_POST['livestock_type']);
+    $livestock_age = mysqli_real_escape_string($conn, $_POST['livestock_age']);
+    $livestock_quantity = mysqli_real_escape_string($conn, $_POST['livestock_quantity']);
+    $livestock_status = mysqli_real_escape_string($conn, $_POST['livestock_status']);
+
+    $registerLivestockQuery = "INSERT INTO livestock (farmer_code, livestock_category, livestock_type, livestock_age, livestock_quantity, livestock_status) 
+    VALUES ('$farmer_code', '$livestock_category', '$livestock_type', '$livestock_age', '$livestock_quantity', '$livestock_status')";
+    $registerLivestockResult = mysqli_query($conn, $registerLivestockQuery);
+
+    if ($registerLivestockResult) {
+            $account_logQuery = "INSERT INTO account_log (log_time, user_name, user_action, user_type, user_id)
+                                VALUES ('$ttime', '$technician', 'Registered a Livestock', 'Technician', '$tech_id')";
+            $account_logResult = mysqli_query($conn, $account_logQuery);
+            if ($account_logResult) {
+                $_SESSION['message'] = "Livestock Registered Successfully!";
+                $_SESSION['icon'] = "success";
+                header("Location: ../page.php?page=livestock");
+                exit();
+            }
+    }
+}
+//add pet
+if(isset($_POST['addPetBtn'])){
+    date_default_timezone_set('Asia/Manila');
+    $ddate = new DateTime();
+    $new_ddate = $ddate->format('Y-m-d');
+    $dday = $ddate->format('l');
+    $ttime = $ddate->format('h:i a');
+    $technician = $_SESSION['user_name'];
+    $tech_id = $_SESSION['tech_id'];
+
+    $pet_type = mysqli_real_escape_string($conn, $_POST['pet_type']);
+    $pet_name = mysqli_real_escape_string($conn, $_POST['pet_name']);
+    $pet_breed = mysqli_real_escape_string($conn, $_POST['pet_breed']);
+    $pet_color = mysqli_real_escape_string($conn, $_POST['pet_color']);
+    $pet_age = mysqli_real_escape_string($conn, $_POST['pet_age']);
+    $resident_code = mysqli_real_escape_string($conn, $_POST['resident_code']);
+
+    $registerPetQuery = "INSERT INTO pet (pet_type, pet_name, pet_breed, pet_color, pet_age, resident_code, tech_id)
+    VALUES ('$pet_type', '$pet_name', '$pet_breed', '$pet_color', '$pet_age', '$resident_code', '$tech_id')";
+    $registerPetResult = mysqli_query($conn, $registerPetQuery);
+
+    if($registerPetResult){
+        $account_logQuery = "INSERT INTO account_log (log_time, user_name, user_action, user_type, user_id)
+                            VALUES ('$ttime', '$technician', 'Registered a Resident Pet', 'Technician', '$tech_id')";
+            $account_logResult = mysqli_query($conn, $account_logQuery);
+            if ($account_logResult) {
+                $_SESSION['message'] = "Pet Registered Successfully!";
+                $_SESSION['icon'] = "success";
+                header("Location: ../page.php?page=livestock");
+                exit();
+            }
+    }
+}
 ?>
