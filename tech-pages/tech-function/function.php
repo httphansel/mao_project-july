@@ -83,4 +83,69 @@ if(isset($_POST['requestItemBtn'])){
         }
     }
 }
+
+//register a farmer
+if(isset($_POST['registerFarmerBtn'])){
+    // Function to generate a unique farmer code
+    function generateFarmerCode()
+    {
+        $prefix = 'FR2024';
+        $numbers = '0123456789';
+
+        $randomString = $prefix;
+
+        for ($i = 0; $i < 6; $i++) {
+            $randomString .= $numbers[rand(0, strlen($numbers) - 1)];
+        }
+
+        return $randomString;
+    }
+
+    // Generate a unique farmer code
+    $farmer_code = generateFarmerCode();
+
+    date_default_timezone_set('Asia/Manila');
+    $ddate = new DateTime();
+    $new_ddate = $ddate->format('Y-m-d');
+    $dday = $ddate->format('l');
+    $ttime = $ddate->format('h:i a');
+    $tech_id = $_SESSION['tech_id'];
+    $technician = $_SESSION['user_name'];
+
+    $farmer_fname = mysqli_real_escape_string($conn, $_POST['farmer_fname']);
+    $farmer_mname = mysqli_real_escape_string($conn, $_POST['farmer_mname']);
+    $farmer_lname = mysqli_real_escape_string($conn, $_POST['farmer_lname']);
+    $farmer_extname = mysqli_real_escape_string($conn, $_POST['farmer_extname']);
+    $birthday = mysqli_real_escape_string($conn, $_POST['birthday']);
+    $age = mysqli_real_escape_string($conn, $_POST['age']);
+    $sex = mysqli_real_escape_string($conn, $_POST['sex']);
+    $barangay = mysqli_real_escape_string($conn, $_POST['barangay']);
+    $phone_number = mysqli_real_escape_string($conn, $_POST['phone_number']);
+
+    $addFarmerQuery = "INSERT INTO farmer (farmer_code, farmer_fname, farmer_mname, farmer_lname, farmer_extname, birthday, age, sex, barangay, phone_number, tech_id)
+    VALUES ('$farmer_code', '$farmer_fname', '$farmer_mname', '$farmer_lname', '$farmer_extname', '$birthday', '$age', '$sex', '$barangay', '$phone_number', '$tech_id')";
+
+    try {
+        $addFarmerResult = mysqli_query($conn, $addFarmerQuery);
+
+        if($addFarmerResult){
+            $account_logQuery = "INSERT INTO account_log (log_time, user_name, user_action, user_type, user_id)
+                            VALUES ('$ttime', '$technician', 'Registered a Farmer', 'Technician', '$tech_id')";
+            $account_logResult = mysqli_query($conn, $account_logQuery);
+            if ($account_logResult) {
+                $_SESSION['message'] = "Registered Farmer Successfully!";
+                $_SESSION['icon'] = "success";
+                header("Location: ../page.php?page=farmer");
+                exit();
+            }
+        } else {
+            throw new Exception("Cannot Add Farmer");
+        }
+    } catch (Exception $e) {
+        $_SESSION['message'] = $e->getMessage();
+        $_SESSION['icon'] = "error";
+        header("Location: ../page.php?page=farmer");
+        exit();
+    }
+}
 ?>
