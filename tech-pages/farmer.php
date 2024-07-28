@@ -4,11 +4,6 @@
     <button class="btn btn-outline-success p-3 fw-bold w-25 float-end me-2" style="border-radius: 0;" data-bs-toggle="modal" data-bs-target="#addFarmerData">
         <i class="fa-solid fa-address-card"></i> Register a Farmer
     </button>
-
-    <!-- <button class="btn btn-danger p-3 me-2 fw-bold w-25 float-end" style="border-radius: 0;">
-        <i class="fa-solid fa-box-archive"></i> Archived Farmer
-    </button> -->
-    <!-- archived farmer modal table -->
 </div>
 
 <!-- add farmer data modal -->
@@ -146,6 +141,7 @@
     </div>
 </div>
 
+<!-- farmer table here -->
 <div class="row m-2 mt-3">
     <div class="shadow shadow-lg p-4">
         <h3><?= htmlspecialchars($cluster_id) ?> FARMER INFORMATION</h3>

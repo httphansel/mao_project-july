@@ -148,4 +148,72 @@ if(isset($_POST['registerFarmerBtn'])){
         exit();
     }
 }
+
+//resident registration
+if(isset($_POST['registerResidentBtn'])){
+        function generateResidentCode($conn) {
+        $prefix = 'RS2024';
+        $numbers = '0123456789';
+        do {
+            $randomString = $prefix;
+            for ($i = 0; $i < 6; $i++) {
+                $randomString .= $numbers[rand(0, strlen($numbers) - 1)];
+            }
+            $resident_code = $randomString;
+
+            // Check if the generated resident code already exists
+            $query = "SELECT * FROM resident WHERE resident_code = '$resident_code'";
+            $result = mysqli_query($conn, $query);
+        } while(mysqli_num_rows($result) > 0);
+
+        return $resident_code;
+    }
+
+    // Generate a unique resident code
+    $resident_code = generateResidentCode($conn);
+
+    date_default_timezone_set('Asia/Manila');
+    $ddate = new DateTime();
+    $new_ddate = $ddate->format('Y-m-d');
+    $dday = $ddate->format('l');
+    $ttime = $ddate->format('h:i a');
+    $tech_id = $_SESSION['tech_id'];
+    $technician = $_SESSION['user_name'];
+
+    $resident_fname = mysqli_real_escape_string($conn, $_POST['resident_fname']);
+    $resident_mname = mysqli_real_escape_string($conn, $_POST['resident_mname']);
+    $resident_lname = mysqli_real_escape_string($conn, $_POST['resident_lname']);
+    $resident_extname = mysqli_real_escape_string($conn, $_POST['resident_extname']);
+    $birthday = mysqli_real_escape_string($conn, $_POST['birthday']);
+    $age = mysqli_real_escape_string($conn, $_POST['age']);
+    $sex = mysqli_real_escape_string($conn, $_POST['sex']);
+    $barangay = mysqli_real_escape_string($conn, $_POST['barangay']);
+
+    $addResidentQuery = "INSERT INTO resident (resident_code, resident_fname, resident_mname, resident_lname, resident_extname, birthday, age, sex, barangay, tech_id)
+    VALUES ('$resident_code', '$resident_fname', '$resident_mname', '$resident_lname', '$resident_extname', '$birthday', '$age', '$sex', '$barangay', '$tech_id')";
+
+    try {
+        $addResidentResult = mysqli_query($conn, $addResidentQuery);
+
+        if($addResidentResult){
+            $account_logQuery = "INSERT INTO account_log (log_time, user_name, user_action, user_type, user_id)
+                            VALUES ('$ttime', '$technician', 'Registered a Resident', 'Technician', '$tech_id')";
+            $account_logResult = mysqli_query($conn, $account_logQuery);
+            if ($account_logResult) {
+                $_SESSION['message'] = "Resident Registered Successfully!";
+                $_SESSION['icon'] = "success";
+                header("Location: ../page.php?page=resident");
+                exit();
+            }
+        } else {
+            throw new Exception("Cannot Add Resident");
+        }
+    } catch (Exception $e) {
+        $_SESSION['message'] = $e->getMessage();
+        $_SESSION['icon'] = "error";
+        header("Location: ../page.php?page=resident");
+        exit();
+    }
+}
+
 ?>

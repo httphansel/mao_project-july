@@ -4,11 +4,6 @@
     <button class="btn btn-outline-success p-3 fw-bold w-25 float-end me-2" style="border-radius: 0;" data-bs-toggle="modal" data-bs-target="#addResidentData">
         <i class="fa-solid fa-address-card"></i> Register a Resident
     </button>
-
-    <!-- <button class="btn btn-danger p-3 me-2 fw-bold w-25 float-end" style="border-radius: 0;">
-        <i class="fa-solid fa-box-archive"></i> Archived Resident
-    </button> -->
-    <!-- archived farmer modal table -->
 </div>
 
 <!-- add resident data modal -->
@@ -128,14 +123,9 @@
                         </div>
                     </div>
                     <div class="row mb-3 g-2">
-                        <div class="col-6">
-                            <div class="form-floating">
-                                <input type="number" class="form-control w-100" id="name" name="phone_number" placeholder="name@example.com" autocomplete="off" required>
-                                <label for="floatingInput" class="">PHONE NO.</label>
-                            </div>
-                        </div>
+                        
                         <div class="col">
-                            <button class="btn btn-success fw-bold p-2 px-3 float-end" style="border-radius: 0;" name="registerFarmerBtn">
+                            <button class="btn btn-success fw-bold p-2 px-3 float-end" style="border-radius: 0;" name="registerResidentBtn">
                                 REGISTER
                             </button>
                         </div>
@@ -150,7 +140,7 @@
 <div class="row m-2 mt-3">
     <div class="shadow shadow-lg p-4">
         <h3><?= htmlspecialchars($cluster_id) ?> RESIDENT INFORMATION</h3>
-        <table class="table table-light table-bordered table-hover" id="myTable">
+        <table class="table table-light table-bordered table-hover" id="residentTbl">
             <thead class="table-primary">
                 <tr>
                     <th scope="col">Firstname</th>
@@ -158,6 +148,7 @@
                     <th scope="col">Lastname</th>
                     <th scope="col">Barangay</th>
                     <th scope="col">Sex</th>
+                    <th scope="col">Age</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -191,6 +182,7 @@
                             <td><?= htmlspecialchars($resident['resident_lname']) ?></td>
                             <td><?= htmlspecialchars($resident['residents_barangay']) ?></td>
                             <td><?= htmlspecialchars($resident['sex']) ?></td>
+                            <td><?= htmlspecialchars($resident['age']) ?></td>
                             <td class="d-flex text-center">
                                 <a href="" class="nav-link p-0 text-primary me-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#viewResident<?= htmlspecialchars($resident['resident_code']) ?>" aria-controls="offcanvasRight">
                                     <i class="fa-solid fa-circle-info"></i> View
@@ -241,12 +233,7 @@
                                     </div>
                                 </div>
                                 <div class="row g-2 mb-2">
-                                    <div class="col">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" value="<?= htmlspecialchars($resident['phone_number']) ?>" placeholder="Phone Number" disabled>
-                                            <label>PHONE NO.</label>
-                                        </div>
-                                    </div>
+
                                     <div class="col">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" value="<?= htmlspecialchars($resident['residents_barangay']) ?>" placeholder="Barangay" disabled>
@@ -259,23 +246,23 @@
                                     <label>REGISTRATION DATE</label>
                                 </div>
                                 <div class="border-bottom my"></div>
-                                <h4>LIVESTOCK OWNED</h4>
+                                <h4>PET/S OWNED</h4>
                                 <?php
                                 $resident_code = $resident['resident_code'];
-                                $petQuery = "
-                                    SELECT ls.pet_type, ls.pet_quantity
-                                    FROM pet ls
-                                    WHERE ls.resident_code = '$resident_code'
-                                ";
-                                $petResult = mysqli_query($conn, $petQuery);
-                                if ($petResult && $petResult->num_rows > 0) {
-                                    while ($pet = $petResult->fetch_assoc()) {
-                                        echo "<p>" . htmlspecialchars($pet['pet_quantity']) . " " . htmlspecialchars($pet['pet_type']) . "/s </p>";
+                                $petQuery = "SELECT * FROM pet WHERE resident_code = '$resident_code'";
+                                $petQueryResult = mysqli_query($conn, $petQuery);
+
+                                if ($petQueryResult && $petQueryResult->num_rows > 0) {
+                                    while ($pet = $petQueryResult->fetch_assoc()) {
+                                ?>
+                                        <p><?= htmlspecialchars($pet['pet_type']) ?> | Pet Name: <?= htmlspecialchars($pet['pet_name']) ?> a <?= htmlspecialchars($pet['pet_breed']) ?></p>
+                                <?php
                                     }
                                 } else {
-                                    echo "<p>No pet owned</p>";
+                                    echo "<p>No Registered Pet</p>";
                                 }
                                 ?>
+
                             </div>
                         </div>
                         <!-- Offcanvas for updating resident details -->

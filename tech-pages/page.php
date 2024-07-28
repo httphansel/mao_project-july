@@ -336,6 +336,10 @@ if (!$tech_id) {
         $(document).ready(function() {
             $('#taskTable').DataTable();
         });
+
+        $(document).ready(function() {
+            $('#residentTbl').DataTable();
+        });
     </script>
 
     <!-- NO NUMBERS SCRIPT ITO -->
