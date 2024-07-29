@@ -84,6 +84,65 @@ if(isset($_POST['requestItemBtn'])){
     }
 }
 
+//distribute item: tech to farmer naman dito
+if (isset($_POST['distributeItemBtn'])) {
+    date_default_timezone_set('Asia/Manila');
+    $ddate = new DateTime();
+    $new_ddate = $ddate->format('Y-m-d');
+    $dday = $ddate->format('l');
+    $ttime = $ddate->format('h:i a');
+    $technician = $_SESSION['user_name'];
+    $tech_id = $_SESSION['tech_id'];
+    $barangay = $_SESSION['barangay'];
+    $item_name = mysqli_real_escape_string($conn, $_POST['item_name']);
+    $item_quantity = mysqli_real_escape_string($conn, $_POST['item_quantity']);
+    $farmer_code = mysqli_real_escape_string($conn, $_POST['farmer_code']);
+
+    $tech_inventory = "SELECT * FROM tech_inventory WHERE item_name = '$item_name' AND barangay = '$barangay' ";
+    $tech_inventoryResult = mysqli_query($conn, $tech_inventory);
+
+    if ($tech_inventoryResult->num_rows > 0) {
+        while ($techItem = $tech_inventoryResult->fetch_assoc()) {
+
+            if ($item_quantity <= $techItem['item_quantity']) {
+                $updatedQuantity = $techItem['item_quantity'] - $item_quantity;
+
+                $updatedItemQuery = "UPDATE tech_inventory SET `item_quantity` = '$updatedQuantity' WHERE item_name = '$item_name' AND barangay = '$barangay' ";
+                $updatedItemResult = mysqli_query($conn, $updatedItemQuery);
+
+                if ($updatedItemResult) {
+
+                    $distributeQuery = "INSERT INTO distributed_item (item_name, item_quantity, farmer_code, tech_id)
+                    VALUES ('$item_name', '$item_quantity', '$farmer_code', '$tech_id')";
+                    $distributeResult = mysqli_query($conn, $distributeQuery);
+
+                    if ($distributeResult) {
+                        $account_logQuery = "INSERT INTO account_log (log_time, user_name, user_action, user_type, user_id)
+                        VALUES ('$ttime', '$technician', 'Distributed an Item', 'Technician', '$tech_id')";
+                        $account_logResult = mysqli_query($conn, $account_logQuery);
+                        if ($account_logResult) {
+                            $_SESSION['message'] = "Task Done!";
+                            $_SESSION['icon'] = "success";
+                            header("Location: ../index.php?tech-page=inventory");
+                            exit();
+                        }
+                    }
+                } else {
+                    $_SESSION["message"] = "Error Distributing Item.";
+                    $_SESSION["icon"] = "error";
+                    header("Location: ../index.php?page=inventory");
+                    exit();
+                }
+            } else {
+                $_SESSION["message"] = "There's not enough stock to complete this operation.";
+                $_SESSION["icon"] = "warning";
+                header("Location: ../index.php?page=inventory");
+                exit();
+            }
+        }
+    }
+}
+
 //register a farmer
 if(isset($_POST['registerFarmerBtn'])){
     // Function to generate a unique farmer code
