@@ -64,7 +64,7 @@
                         <div class="modal-body">
                             <h3 class="text-center">Distribute Item to Farmer</h3>
                             <div class="border-bottom my-2"></div>
-                            <form action="" method="post">
+                            <form action="tech-function/function.php" method="post">
                                 <div class="row g-2 mb-2">
                                     <div class="col-9">
                                         <div class="form-floating">
@@ -117,6 +117,7 @@
                                                 ?>
                                             </select>
                                             <label for="floatingSelect">FARMER</label>
+<button class="btn btn-outline-success px-3 float-end w-25 ms-auto fw-bold" style="border-radius: 0;" name="distributeItemBtn">Distribute</button>
                                         </div>
                             </form>
                         </div>
